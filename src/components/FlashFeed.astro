@@ -1,0 +1,51 @@
+---
+const feedItems = [
+  { id: 1, title: 'Breaking News', link: '#', icon: '🔥' },
+  { id: 2, title: 'Latest Updates', link: '#', icon: '⚡' },
+  { id: 3, title: 'Trending Now', link: '#', icon: '🚀' },
+];
+---
+<section aria-label="Flash Feed" class="flash-feed">
+  <div class="feed-scroll" role="list">
+    {feedItems.map(item => (
+      <a href={item.link} role="listitem" class="feed-item">
+        <span class="icon">{item.icon}</span>
+        <span class="title">{item.title}</span>
+      </a>
+    ))}
+  </div>
+  <LottiePlayer src="/animations/flash.json" alt="Flash animation" loop={true} autoplay={true} />
+</section>
+
+<style>
+.flash-feed {
+  display: flex;
+  align-items: center;
+  overflow-x: auto;
+  background: #111;
+  color: #fff;
+  padding: 1rem;
+}
+.feed-scroll {
+  display: flex;
+  gap: 1rem;
+  flex: 1;
+}
+.feed-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #222;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  text-decoration: none;
+  color: inherit;
+  white-space: nowrap;
+}
+.feed-item:focus {
+  outline: 2px solid #0af;
+}
+.icon {
+  font-size: 1.2rem;
+}
+</style>

@@ -1,0 +1,92 @@
+/* Overlay background */
+.rec-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  z-index: 1000;
+}
+
+/* Show overlay when aria-modal is true */
+.rec-overlay[aria-modal="true"] {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Content box */
+.rec-content {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 8px;
+  max-width: 90%;
+  max-height: 90%;
+  overflow-y: auto;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  animation: slideIn 0.3s ease;
+}
+
+/* Slide-in animation */
+@keyframes slideIn {
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Close button */
+.rec-close-button {
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  background: #333;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.rec-close-button:hover {
+  background: #555;
+}
+
+/* Trigger button */
+.rec-menu-button {
+  margin: 1rem 0;
+  padding: 0.5rem 1rem;
+  background: #0077cc;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.rec-menu-button:hover {
+  background: #005fa3;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  .rec-content {
+    padding: 1rem;
+  }
+}
+
+@media (min-width: 601px) and (max-width: 1024px) {
+  .rec-content {
+    padding: 1.5rem;
+  }
+}
+
+@media (min-width: 1025px) {
+  .rec-content {
+    padding: 2rem;
+  }
+}

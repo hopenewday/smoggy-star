@@ -1,0 +1,40 @@
+---
+const { title, author, date, imageUrl, videoId, content } = Astro.props;
+import RecommendationMenu from './RecommendationMenu.jsx';
+---
+
+<article>
+  <h1>{title}</h1>
+  <div class="byline">
+    <span>By {author}</span> | <time datetime={date}>{date}</time>
+
+  <RecommendationMenu client:load articleId={Astro.props.articleId} />
+  </div>
+  <img src={imageUrl} alt={title} loading="lazy" class="main-image" />
+  {content}
+
+  <div class="media-embed">
+    <iframe width="560" height="315" src={`https://www.youtube.com/embed/${videoId}`} title="YouTube video player" frameborder="0" allowfullscreen loading="lazy"></iframe>
+  </div>
+
+  <aside class="related-articles">
+    <h2>Related Articles</h2>
+    <ul id="related-list">
+      <!-- Related articles will be loaded here -->
+    </ul>
+  </aside>
+</article>
+
+<!-- VideoObject JSON-LD -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "VideoObject",
+  "name": "{title}",
+  "description": "{title}",
+  "thumbnailUrl": "{imageUrl}",
+  "uploadDate": "{date}",
+  "contentUrl": "https://www.youtube.com/watch?v={videoId}",
+  "embedUrl": "https://www.youtube.com/embed/{videoId}"
+}
+</script>

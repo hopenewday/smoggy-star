@@ -1,0 +1,50 @@
+---
+const mode = Astro.url.searchParams.get('mode') || 'login';
+---
+
+<html lang="en">
+<head>
+  <title>{mode === 'login' ? 'Login' : 'Register'} | Site</title>
+</head>
+<body>
+  <main>
+    <h1>{mode === 'login' ? 'Login' : 'Register'}</h1>
+    <form id="auth-form">
+      <input type="email" name="email" placeholder="Email" required />
+      <input type="password" name="password" placeholder="Password" required />
+      {mode === 'register' && (
+        <input type="text" name="username" placeholder="Username" required />
+      )}
+      <button type="submit">{mode === 'login' ? 'Login' : 'Register'}</button>
+    </form>
+    <p>
+      {mode === 'login' ? 'No account?' : 'Already have an account?'}
+      <a href={`/auth?mode=${mode === 'login' ? 'register' : 'login'}`}>
+        {mode === 'login' ? 'Register here' : 'Login here'}
+      </a>
+    </p>
+  </main>
+  <script type="module">
+    const form = document.getElementById('auth-form');
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const data = Object.fromEntries(new FormData(form));
+      const endpoint = data.username ? '/api/register' : '/api/login';
+      try {
+        const res = await fetch(endpoint, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        });
+        if (!res.ok) throw new Error('Auth failed');
+        const result = await res.json();
+        localStorage.setItem('token', result.token);
+        alert('Success!');
+        window.location.href = '/';
+      } catch (err) {
+        alert(err.message);
+      }
+    });
+  </script>
+</body>
+</html>

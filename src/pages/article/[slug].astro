@@ -1,0 +1,74 @@
+---
+import CMSHeader from '../../components/CMSHeader.svelte';
+import CMSArticle from '../../components/CMSArticle.svelte';
+import Sidebar from '../../components/Sidebar.svelte';
+import CMSFooter from '../../components/CMSFooter.svelte';
+import NewsletterPopup from '../../components/NewsletterPopup.svelte';
+import ThemeToggle from '../../components/ThemeToggle.svelte';
+import SEO from '../../components/SEO.astro';
+
+const { slug } = Astro.params;
+
+const res = await fetch(`${import.meta.env.PUBLIC_SVELTIA_API_ENDPOINT}/articles/${slug}?apiKey=${import.meta.env.PUBLIC_SVELTIA_API_KEY}`);
+const article = await res.json();
+---
+
+<SEO pageTitle={article.title} pageDescription={article.description} canonicalUrl={`https://yourdomain.com/article/${slug}`} imageUrl={article.imageUrl} authorName={article.author} publishDate={article.datePublished} />
+
+<ThemeToggle />
+
+<NewsletterPopup />
+
+<main>
+  <CMSHeader />
+  <section class="content-area">
+    <CMSArticle {article} />
+    <Sidebar />
+  </section>
+  <CMSFooter />
+<section class="comments">
+  <h2>Comments</h2>
+  <ul id="comments-list"></ul>
+  <form id="comment-form">
+    <textarea name="content" placeholder="Write a comment..." required></textarea>
+    <button type="submit">Post Comment</button>
+  </form>
+</section>
+<script type="module">
+const slug = "{slug}";
+async function loadComments() {
+  const res = await fetch(`/api/articles/${slug}/comments`);
+  const comments = await res.json();
+  const list = document.getElementById('comments-list');
+  list.innerHTML = '';
+  comments.forEach(c => {
+    const li = document.createElement('li');
+    li.textContent = `${c.author}: ${c.content}`;
+    list.appendChild(li);
+  });
+}
+loadComments();
+
+const form = document.getElementById('comment-form');
+form.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const content = form.content.value;
+  const token = localStorage.getItem('token');
+  if (!token) return alert('Please login first');
+  const res = await fetch(`/api/articles/${slug}/comments`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    },
+    body: JSON.stringify({ content })
+  });
+  if (res.ok) {
+    form.reset();
+    loadComments();
+  } else {
+    alert('Failed to post comment');
+  }
+});
+</script>
+</main>

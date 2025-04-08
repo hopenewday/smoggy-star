@@ -1,0 +1,19 @@
+---
+const { articles = [] } = Astro.props;
+---
+
+<style>
+@import "/styles/article-swipe.css";
+</style>
+
+<div class="article-stack">
+  {articles.map((article, index) => (
+    <div class="article-card {index === 0 ? 'active' : ''}">
+      <h2>{article.title}</h2>
+      <p>{article.content}</p>
+      <button class="flash-button">⚡</button>
+    </div>
+  ))}
+</div>
+
+<script src="/scripts/mobileSwiper.js" type="module"></script>

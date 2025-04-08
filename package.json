@@ -1,0 +1,44 @@
+{
+  "name": "sveltia-astro-theme",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "test": "jest",
+    "test:e2e": "playwright test",
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
+  },
+  "dependencies": {
+    "@apollo/client": "^3.8.0",
+    "@astrojs/cloudflare": "12.4.0",
+    "@astrojs/react": "4.2.3",
+    "@reduxjs/toolkit": "^2.0.0",
+    "@sentry/browser": "^7.100.0",
+    "clsx": "^2.0.0",
+    "graphql": "^16.7.0",
+    "gsap": "^3.12.7",
+    "imagekit": "^6.0.0",
+    "lottie-web": "^5.12.0",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "react-redux": "^9.0.0",
+    "react-schemaorg": "^2.0.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.0.0",
+    "@types/react": "^18.0.0",
+    "@types/react-dom": "^18.0.0",
+    "astro": "^5.6.1",
+    "eslint": "^9.0.0",
+    "eslint-plugin-react": "^7.0.0",
+    "glob": "^9.3.3",
+    "jest": "^29.0.0",
+    "lru-cache": "^10.2.1",
+    "playwright": "^1.40.0",
+    "rimraf": "^4.4.1",
+    "typescript": "^5.0.0"
+  }
+}

@@ -1,0 +1,52 @@
+/* Existing styles remain unchanged */
+
+/* Search container */
+.search-container {
+  position: relative;
+  margin-left: 1rem;
+}
+
+#search-input {
+  padding: 0.5rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 200px;
+  transition: border-color 0.3s ease;
+}
+
+#search-input:focus {
+  outline: none;
+  border-color: #0077cc;
+}
+
+#search-suggestions {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-top: none;
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 1500;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+#search-suggestions li {
+  padding: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#search-suggestions li:hover,
+#search-suggestions li:focus {
+  background-color: #f0f0f0;
+}
+
+#search-suggestions.hidden {
+  display: none;
+}

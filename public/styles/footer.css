@@ -1,0 +1,112 @@
+.site-footer {
+  background-color: #f9f9f9;
+  border-top: 1px solid #ddd;
+  padding: 1.5rem 1rem;
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.footer-nav,
+.footer-social,
+.footer-copy {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.footer-nav a,
+.footer-social a {
+  text-decoration: none;
+  color: #333;
+  transition: color 0.3s ease;
+}
+
+.footer-nav a:hover,
+.footer-nav a:focus,
+.footer-social a:hover,
+.footer-social a:focus {
+  color: #0077cc;
+}
+
+.footer-copy {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.back-to-top {
+  background: none;
+  border: none;
+  font-size: 1.25rem;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.back-to-top:hover,
+.back-to-top:focus {
+  transform: scale(1.2);
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  .footer-container {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+/* Flash toggle button */
+.flash-toggle {
+  display: none; /* hidden by default */
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 9999;
+  padding: 12px 20px;
+  background: #ff4081;
+  color: #fff;
+  border: none;
+  border-radius: 25px;
+  font-size: 16px;
+  font-weight: 600;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.flash-toggle:hover,
+.flash-toggle:focus {
+  background: #e73370;
+  transform: scale(1.05);
+}
+
+@media (max-width: 768px) {
+  .flash-toggle {
+    display: block;
+  }
+}
+
+/* Flash feed overlay */
+.flash-feed {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #000;
+  color: #fff;
+  z-index: 10000;
+  overflow: hidden;
+}
+
+.flash-feed.active {
+  display: block;
+}
+}
