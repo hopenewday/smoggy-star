@@ -3,13 +3,13 @@ import MetaTags from './seo/MetaTags.astro';
 import JsonLd from './seo/JsonLd.astro';
 
 const { pageTitle, pageDescription, canonicalUrl, imageUrl, publishDate, authorName } = Astro.props;
+// Link tags moved to template section below
+---
 <link rel="alternate" hreflang="en" href={canonicalUrl} />
 <link rel="alternate" type="application/rss+xml" title="RSS Feed" href="/feed.xml" />
 <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/atom.xml" />
 <link rel="prev" href={Astro.props.prevUrl || ''} />
 <link rel="next" href={Astro.props.nextUrl || ''} />
----
-
 <MetaTags
   title={pageTitle}
   description={pageDescription}
