@@ -6,11 +6,11 @@ const CMSIntegrationComponent = ({ contentId, type }) => {
 
   useEffect(() => {
     const fetchSchemaData = async () => {
-      const response = await fetch(`${process.env.SVELTIA_CMS_URL}`, {
+      const response = await fetch(`${import.meta.env.PUBLIC_SVELTIA_CMS_URL}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${process.env.SVELTIA_CMS_TOKEN}`,
+          'Authorization': `Bearer ${import.meta.env.SVELTIA_CMS_TOKEN}`,
         },
         body: JSON.stringify({
           query: `
@@ -32,6 +32,13 @@ const CMSIntegrationComponent = ({ contentId, type }) => {
   }, [contentId]);
 
   return schemaData ? <SchemaMarkupComponent schemaData={schemaData} type={type} data={schemaData} /> : null;
+};
+
+import PropTypes from 'prop-types';
+
+CMSIntegrationComponent.propTypes = {
+  contentId: PropTypes.string.isRequired,
+  type: PropTypes.string.isRequired,
 };
 
 export default CMSIntegrationComponent;

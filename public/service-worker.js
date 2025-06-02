@@ -72,7 +72,7 @@ async function syncOfflineActions() {
       if (response.ok) {
         successful.push(req);
       }
-    } catch (err) {
+    } catch (_err) { // Changed err to _err
       console.warn('Background sync failed for request:', req.url);
     }
   }

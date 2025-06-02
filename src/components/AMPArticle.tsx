@@ -1,6 +1,6 @@
 import React from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
-import { AmpImg, AmpVideo, AmpCarousel } from 'react-amphtml';
+import { AmpImg } from 'react-amphtml'; // Removed AmpVideo, AmpCarousel
 
 interface AMPArticleProps {
   title: string;

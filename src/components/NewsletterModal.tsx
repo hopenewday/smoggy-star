@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
-const kitApiUrl = import.meta.env.PUBLIC_KIT_API_URL || process.env.PUBLIC_KIT_API_URL;
-const kitApiKey = import.meta.env.PUBLIC_KIT_API_KEY || process.env.PUBLIC_KIT_API_KEY;
+const kitApiUrl = import.meta.env.PUBLIC_KIT_API_URL;
+const kitApiKey = import.meta.env.PUBLIC_KIT_API_KEY;
 
 const NewsletterModal: React.FC = () => {
   const [visible, setVisible] = useState(false);

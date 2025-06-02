@@ -2,7 +2,16 @@
 import MetaTags from './seo/MetaTags.astro';
 import JsonLd from './seo/JsonLd.astro';
 
-const { pageTitle, pageDescription, canonicalUrl, imageUrl, publishDate, authorName } = Astro.props;
+const {
+  pageTitle,
+  pageDescription,
+  canonicalUrl,
+  imageUrl,
+  publishDate,
+  authorName,
+  videoData = null, // Added optional prop
+  faqData = null,   // Added optional prop
+} = Astro.props;
 // Link tags moved to template section below
 ---
 <link rel="alternate" hreflang="en" href={canonicalUrl} />
@@ -66,3 +75,6 @@ const { pageTitle, pageDescription, canonicalUrl, imageUrl, publishDate, authorN
     contactType: "Customer Support"
   }]
 }} />
+
+{videoData && <JsonLd type="VideoObject" data={videoData} />}
+{faqData && <JsonLd type="FAQPage" data={faqData} />}

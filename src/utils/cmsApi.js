@@ -1,4 +1,4 @@
-const CMS_ENDPOINT = process.env.SVELTIA_CMS_URL;
+const CMS_ENDPOINT = import.meta.env.PUBLIC_SVELTIA_CMS_URL;
 
 /**
  * Generic GraphQL query function.
@@ -8,7 +8,7 @@ async function cmsQuery(query, variables = {}) {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${process.env.SVELTIA_CMS_TOKEN}`,
+      'Authorization': `Bearer ${import.meta.env.SVELTIA_CMS_TOKEN}`,
     },
     body: JSON.stringify({ query, variables }),
   });
