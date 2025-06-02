@@ -47,14 +47,45 @@ This project is a modern, high‑performance tech/media website built using Astr
   ```
 
 - **Environment Variables:**
-  Create a `.env` file with:
+  Create a `.env` file by copying `.env.example` and filling in the values. The key variables are:
   ```ini
+  # Astro Site Configuration
   PUBLIC_BASE_URL=https://yourdomain.com
-  GA_TRACKING_ID=UA-XXXXX-X
-  IMAGIX_CDN_URL=https://cdn.imagix.io
-  SVELTIA_API_KEY=your_sveltia_api_key
-  SVELTIA_API_ENDPOINT=https://api.sveltia-cms.com
+
+  # Sveltia-CMS GraphQL Endpoint
+  PUBLIC_SVELTIA_CMS_URL=https://your-sveltia-cms-instance/graphql
+  SVELTIA_CMS_TOKEN=your_cms_server_side_token_keep_secret # Server-side only
+
+  # ImageKit
+  PUBLIC_IMAGEKIT_PUBLIC_KEY=your_imagekit_public_key
+  IMAGEKIT_PRIVATE_KEY=your_imagekit_server_side_private_key_keep_secret # Server-side only
+  PUBLIC_IMAGEKIT_URL_ENDPOINT=https://ik.imagekit.io/your_imagekit_id
+
+  # Cloudflare CDN (Optional Fallback for ImageKit)
+  PUBLIC_CLOUDFLARE_CDN_URL=https://your.cloudflare.cdn.url/assets
+
+  # Asset Versioning (Optional, for cache busting)
+  PUBLIC_ASSET_VERSION=1.0.0
+
+  # Newsletter Subscription (Example - Kit API)
+  PUBLIC_KIT_API_URL=https://api.examplekit.com
+  PUBLIC_KIT_API_KEY=your_public_kit_api_key
+
+  # Tebi.io S3-compatible storage (Server-Side)
+  TEBI_ENDPOINT=https://s3.tebi.io # Server-side only
+  TEBI_ACCESS_KEY=your_tebi_access_key_keep_secret # Server-side only
+  TEBI_SECRET_KEY=your_tebi_secret_key_keep_secret # Server-side only
+  TEBI_BUCKET=your_tebi_bucket_name # Server-side only
+
+  # Facebook Instant Articles (Server-Side, if used for generation)
+  FBIA_PAGE_ID=your_facebook_page_id # Potentially public, or server-side
+  FBIA_ACCESS_TOKEN=your_fbia_access_token_keep_secret # Server-side only
+
+  # Analytics (Client-Side)
+  PUBLIC_GOOGLE_ANALYTICS_ID=your_ga_id # e.g., G-XXXXXXXXXX
+  PUBLIC_SENTRY_DSN=your_sentry_public_dsn
   ```
+  **Note:** Variables prefixed with `PUBLIC_` are accessible on the client-side. Others are for server-side use only.
 
 ### 2. Component Imports & CMS Integration
 - **Core Components to Import:**

@@ -12,8 +12,7 @@ function RecommendationMenu({ articleId }) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const overlayRef = useRef(null);
-  const firstFocusableRef = useRef(null);
-  const lastFocusableRef = useRef(null);
+  // Removed unused firstFocusableRef and lastFocusableRef
 
   // Fetch recommendations with caching
   useEffect(() => {

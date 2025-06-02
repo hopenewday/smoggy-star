@@ -1,0 +1,57 @@
+---
+// src/components/seo/MetaTags.astro
+import OpenGraphMeta from './OpenGraphMeta.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  canonicalUrl: string; // For <link rel="canonical">
+  ogType?: string;
+  ogImage?: string;     // Used for both OG and Twitter image
+  publishDate?: string;
+  updatedDate?: string;
+  twitterCard?: string;
+  twitterSite?: string;
+  twitterCreator?: string;
+  noindex?: boolean;
+}
+
+const {
+  title,
+  description,
+  canonicalUrl,
+  ogType,
+  ogImage,
+  publishDate,
+  updatedDate,
+  twitterCard,
+  twitterSite,
+  twitterCreator,
+  noindex,
+} = Astro.props;
+---
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{title}</title>
+<meta name="description" content={description} />
+{canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
+{noindex && <meta name="robots" content="noindex, nofollow" />}
+
+{/* Open Graph Tags - delegated */}
+<OpenGraphMeta
+  ogType={ogType}
+  title={title}
+  description={description}
+  url={canonicalUrl}
+  image={ogImage}
+  publishDate={publishDate}
+  updatedDate={updatedDate}
+/>
+
+{/* Twitter Card Tags */}
+{twitterCard && <meta name="twitter:card" content={twitterCard} />}
+{twitterSite && <meta name="twitter:site" content={twitterSite} />}
+{twitterCreator && <meta name="twitter:creator" content={twitterCreator} />}
+{twitterCard && title && <meta name="twitter:title" content={title} />}
+{twitterCard && description && <meta name="twitter:description" content={description} />}
+{twitterCard && ogImage && <meta name="twitter:image" content={ogImage} />}

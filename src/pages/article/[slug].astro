@@ -11,9 +11,36 @@ const { slug } = Astro.params;
 
 const res = await fetch(`${import.meta.env.PUBLIC_SVELTIA_API_ENDPOINT}/articles/${slug}?apiKey=${import.meta.env.PUBLIC_SVELTIA_API_KEY}`);
 const article = await res.json();
+
+// Construct videoDataForSeo
+const videoDataForSeo = article.videoId ? {
+  "@type": "VideoObject",
+  name: article.videoTitle || article.title, // Use specific video title if available
+  description: article.videoDescription || article.description, // Use specific video description
+  thumbnailUrl: article.videoThumbnail || article.imageUrl, // Use specific video thumbnail
+  uploadDate: article.videoUploadDate || article.datePublished, // Use specific video upload date
+  contentUrl: `https://www.youtube.com/watch?v=${article.videoId}`,
+  embedUrl: `https://www.youtube.com/embed/${article.videoId}`,
+  publisher: {
+    "@type": "Organization",
+    name: "MySite", // TODO: Replace with value from import.meta.env or a global config
+    logo: {
+      "@type": "ImageObject",
+      url: "https://yourdomain.com/logo.png" // TODO: Replace with value from import.meta.env or a global config
+    }
+  }
+} : null;
 ---
 
-<SEO pageTitle={article.title} pageDescription={article.description} canonicalUrl={`https://yourdomain.com/article/${slug}`} imageUrl={article.imageUrl} authorName={article.author} publishDate={article.datePublished} />
+<SEO
+  pageTitle={article.title}
+  pageDescription={article.description}
+  canonicalUrl={`https://yourdomain.com/article/${slug}`}
+  imageUrl={article.imageUrl}
+  authorName={article.author}
+  publishDate={article.datePublished}
+  videoData={videoDataForSeo}
+/>
 
 <ThemeToggle />
 

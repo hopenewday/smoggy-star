@@ -1,0 +1,15 @@
+---
+// src/components/seo/JsonLd.astro
+interface Props {
+  type: string; // e.g., "WebSite", "Article", "BreadcrumbList", "Organization"
+  data: Record<string, any>;
+}
+const { type, data } = Astro.props;
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": type,
+  ...data,
+};
+---
+<script type="application/ld+json" set:html={JSON.stringify(schema)} />

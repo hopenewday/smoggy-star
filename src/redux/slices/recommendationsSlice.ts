@@ -30,10 +30,20 @@ export const fetchRecommendations = createAsyncThunk<
 >('recommendations/fetchRecommendations', async ({ tags, categories }) => {
   const related = await fetchRelatedContent(tags, categories);
   if (!related) return [];
-  const scored = related.map((item: any) => ({
+
+  interface RelatedContentItem {
+    id: string;
+    title: string;
+    url: string;
+    tags: string[];
+    categories: string[];
+    publishedAt?: string; // calculateRelevancyScore uses this
+  }
+
+  const scored = related.map((item: RelatedContentItem) => ({
     id: item.id,
     title: item.title,
-    slug: item.url,
+    slug: item.url, // In Recommendation interface, 'slug' maps to 'url' from RelatedContentItem
     score: calculateRelevancyScore(item, tags, categories),
   }));
   scored.sort((a: Recommendation, b: Recommendation) => b.score - a.score);

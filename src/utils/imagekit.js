@@ -1,12 +1,12 @@
 import ImageKit from "imagekit";
 import { isFailoverActive } from './cdnFailoverState.js';
 
-const ASSET_VERSION = process.env.ASSET_VERSION || Date.now();
+const ASSET_VERSION = import.meta.env.PUBLIC_ASSET_VERSION || Date.now();
 
 const imagekit = new ImageKit({
-  publicKey: process.env.IMAGEKIT_PUBLIC_KEY,
-  privateKey: process.env.IMAGEKIT_PRIVATE_KEY,
-  urlEndpoint: process.env.IMAGEKIT_URL_ENDPOINT,
+  publicKey: import.meta.env.PUBLIC_IMAGEKIT_PUBLIC_KEY,
+  privateKey: import.meta.env.IMAGEKIT_PRIVATE_KEY,
+  urlEndpoint: import.meta.env.PUBLIC_IMAGEKIT_URL_ENDPOINT,
 });
 
 /**
@@ -30,7 +30,7 @@ export function getOptimizedImageUrl(path, options = {}) {
     });
   } else {
     console.warn(`[Failover] Using Cloudflare CDN for image: ${path}`);
-    const cloudflareBase = process.env.CLOUDFLARE_CDN_URL || "";
+    const cloudflareBase = import.meta.env.PUBLIC_CLOUDFLARE_CDN_URL || "";
     const versionSuffix = `?v=${ASSET_VERSION}`;
     return `${cloudflareBase}/${path}${versionSuffix}`;
   }
