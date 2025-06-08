@@ -1,7 +1,7 @@
 <script>
   // This is a placeholder for a Sveltia CMS component or a local Svelte component.
   // Actual implementation is expected to be provided by Sveltia CMS or developed locally.
-  
+
   // Basic theme toggling logic placeholder
   let currentTheme = 'light'; // or could be 'dark'
 

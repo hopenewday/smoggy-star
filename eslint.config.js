@@ -40,7 +40,7 @@ export default [
       ...jsxA11yPlugin.configs.recommended.rules,
       'no-unused-vars': ['warn', { 'vars': 'all', 'args': 'after-used', 'argsIgnorePattern': '^_' }],
       'no-undef': 'warn',
-      'react/react-in-jsx-scope': 'off', 
+      'react/react-in-jsx-scope': 'off',
       'react/prop-types': 'warn', // Downgrade to warning for now
     },
   },
@@ -60,7 +60,7 @@ export default [
         ecmaFeatures: {
           jsx: true,
         },
-        project: './tsconfig.json', 
+        project: './tsconfig.json',
       },
     },
     plugins: {
@@ -79,9 +79,9 @@ export default [
       ...jsxA11yPlugin.configs.recommended.rules,
       'no-unused-vars': ['warn', { 'argsIgnorePattern': '^_' }], // Also apply here for consistency if JS rules cascade
       'no-undef': 'warn',
-      '@typescript-eslint/no-unused-vars': ['warn', { 'argsIgnorePattern': '^_' }], 
+      '@typescript-eslint/no-unused-vars': ['warn', { 'argsIgnorePattern': '^_' }],
       '@typescript-eslint/no-explicit-any': 'warn', // Downgrade to warning
-      'react/react-in-jsx-scope': 'off', 
+      'react/react-in-jsx-scope': 'off',
       'react/prop-types': 'off', // Often not used in TSX with typed props
     },
   },
@@ -94,7 +94,7 @@ export default [
     },
     rules: {
       'react/no-unknown-property': ['warn', { ignore: ['amp', 'amp-boilerplate'] }], // Downgraded to warn
-      'jsx-a11y/html-has-lang': 'off', 
+      'jsx-a11y/html-has-lang': 'off',
     },
   },
   ...astroPlugin.configs.recommended,
@@ -102,10 +102,10 @@ export default [
     files: ['**/*.astro'],
     languageOptions: {
       globals: {
-        ...globals.browser, 
-        ...globals.node, 
-        LottiePlayer: 'readonly', 
-        trending: 'readonly', 
+        ...globals.browser,
+        ...globals.node,
+        LottiePlayer: 'readonly',
+        trending: 'readonly',
       }
     },
     plugins: {
@@ -116,11 +116,11 @@ export default [
       'no-unused-vars': ['warn', { 'argsIgnorePattern': '^_' }],
       'no-undef': 'warn',
       '@typescript-eslint/no-unused-vars': ['warn', { 'argsIgnorePattern': '^_' }],
-      'react/prop-types': 'off', 
-      'jsx-a11y/alt-text': 'warn', 
+      'react/prop-types': 'off',
+      'jsx-a11y/alt-text': 'warn',
       // Astro components might not always have a single root, e.g. fragments or style tags
       // This rule might be too strict for .astro files if not handled by astro-eslint-parser
-      'react/jsx-no-useless-fragment': 'off', 
+      'react/jsx-no-useless-fragment': 'off',
       'astro/no-deprecated-astro-resolve': 'warn',
       'astro/no-unused-css-selector': 'warn',
       'astro/semi': 'warn',

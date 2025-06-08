@@ -20,13 +20,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const email = formData.get('email');
 
     // Ensure modal and form elements exist to prevent errors if markup changes
-    // These checks are more robust if modal and form are queried inside, 
+    // These checks are more robust if modal and form are queried inside,
     // but keeping structure similar to original where they are defined outside this handler.
     if (!document.querySelector('.newsletter-modal') || !document.getElementById('newsletter-form')) {
         console.error('Newsletter modal or form not found in the DOM for submission handler.');
         return;
     }
-    
+
     // Re-query them here or use variables from outer scope (assuming they are const modal, const form)
     const currentModal = document.querySelector('.newsletter-modal');
     const currentForm = document.getElementById('newsletter-form');
